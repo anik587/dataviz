@@ -1,0 +1,65 @@
+/* Style the navigation bar */
+.snap-navbar_beetleblocks {
+    width: 100%;
+    background-color: #555;
+    overflow: auto;
+}
+
+/* Style plugin button */
+.snap-button_beetleblocks {
+    width: 112px;
+    height: 43px;
+    background-color: #555;
+}
+
+/* Navbar and Plugin button links and icons */
+.snap-navbar_beetleblocks a,
+.snap-button_beetleblocks a {
+    float: left;
+    text-align: center;
+    padding: 5px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.snap-navbar_beetleblocks a i,
+.snap-button_beetleblocks a i {
+    color: white;
+}
+
+.snap-navbar_beetleblocks a:hover,
+.snap-button_beetleblocks a:hover {
+    background-color: #000;
+}
+
+.snap-navbar_beetleblocks a:not([class]):focus,
+.snap-button_beetleblocks a:not([class]):focus {
+    background-color: #555;
+    box-shadow: none;
+}
+
+.snap-navbar_beetleblocks img.icon,
+.snap-button_beetleblocks img.icon {
+    float: left;
+    padding: 5px 0 5px 15px;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+}
+
+.snap-readonlyWarning_beetleblocks {
+    float: left;
+    color: white;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    padding-top: 14px;
+}
+
+/* To hide button or beetleblocks container */
+.snap-hidden_beetleblocks {
+    position: absolute;
+    left: -5000px;
+}
+

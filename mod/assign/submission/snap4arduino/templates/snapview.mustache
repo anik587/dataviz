@@ -1,0 +1,62 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template assignsubmission_snap4arduino/snapview
+
+    This template will render an iframe for Snap4Arduino content.
+
+    Variables required for this template:
+    * snapurl - The base Snap4Arduino URL.
+    * loaded - The mode to display this Snap4Arduino project
+    * userid - The creator of this Snap4Arduino content.
+    * attempt - The attempt number.
+    * width - Container width.
+    * height - Container height.
+    * snap4arduino_xmlproject - The XML project to load.
+    * editable - Edit mode.
+
+    Example context (json):
+    {
+        "snapurl": "http://myserver/mod/assign/submission/snap4arduino/run/index.html",
+        "loaded": false,
+        "userid": "3",
+        "attempt": "1",
+        "width": "100%",
+        "height": "400px",
+        "snap4arduino_xmlproject": "<project name='projectName' app='Snap4Arduino 1.0, http://snap.berkeley.edu' version='1'><notes>...</notes></project>",
+        "editable": false
+    }
+
+}}
+<div class="snap-button_snap4arduino{{#loaded}} snap-hidden_snap4arduino"{{/loaded}}">
+    <span id="snapButton_snap4arduino-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_snap4arduino/view'], function(View) {View.start('{{snap4arduino_xmlproject}}', '{{userid}}', '{{attempt}}', {{#editable}}true{{/editable}}{{^editable}}false{{/editable}});});">{{#pix}} snapMoodle, assignsubmission_snap4arduino, Snap4Arduino in Moodle {{/pix}}</span>
+    <a href="#" id="play_snap4arduino-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_snap4arduino/view'], function(View) {View.start('{{snap4arduino_xmlproject}}', '{{userid}}', '{{attempt}}', {{#editable}}true{{/editable}}{{^editable}}false{{/editable}});}); return false;"><i id="playicon_snap-{{userid}}-{{attempt}}" class="fa fa-fw fa-play"></i></a>
+</div>
+
+<div id="snapContainer_snap4arduino-{{userid}}-{{attempt}}"{{^loaded}} class="snap-hidden_snap4arduino"{{/loaded}} style="width: {{width}}; height: {{height}}; overflow: auto;">
+    <div id="snapNavBar_snap4arduino-{{userid}}-{{attempt}}" class="snap-navbar_snap4arduino" style="width:910px">
+        <span onclick="require(['assignsubmission_snap4arduino/view'], function(View) {View.toogleFullScreen('{{userid}}', '{{attempt}}');});">{{#pix}} snapMoodle, assignsubmission_snap4arduino, Snap4Arduino in Moodle {{/pix}}</span>
+        <a href="#" id="togglingFS_snap4arduino-{{userid}}-{{attempt}}" onclick="require(['assignsubmission_snap4arduino/view'], function(View) {View.toogleFullScreen('{{userid}}', '{{attempt}}');}); return false;"><i id="togglingFSicon_snap4arduino-{{userid}}-{{attempt}}" class="fa fa-fw fa-expand"></i></a>
+        {{#editable}}<a href="#" onclick="document.getElementById('id_submitbutton').click()"><i class="fa fa-fw fa-save"></i></a>{{/editable}}
+        {{^editable}}<span class="snap-readonlyWarning_snap4arduino">{{#str}} snap4arduino_readonlywarning, assignsubmission_snap4arduino {{/str}}</span>{{/editable}}
+    </div>
+    <iframe src="{{snapurl}}" id="snap_snap4arduino-{{userid}}-{{attempt}}" style="width:910px; height: 500px">
+    </iframe>
+</div>
+{{#js}}
+    require(['assignsubmission_snap4arduino/init'], function(Init) {Init.preInit('{{userid}}', '{{attempt}}', {{#loaded}}true{{/loaded}}{{^loaded}}false{{/loaded}}, {{#editable}}true{{/editable}}{{^editable}}false{{/editable}}, '{{snap4arduino_xmlproject}}');});
+{{/js}}

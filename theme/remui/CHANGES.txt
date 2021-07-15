@@ -1,0 +1,13 @@
+Change Log:
+===========
+
+Version 3.10.1
+
+Fix - Left sidebar footer title issue.
+Tweak - Course statistics displayed to guest users.
+
+Feature - Edwiser RemUI Theme Customizer.
+
+Version 3.10.0
+
+Initial Version of Edwiser RemUI, made compatible with latest version of Moodle 3.10.
